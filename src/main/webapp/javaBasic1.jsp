@@ -23,7 +23,7 @@
         ・printlnの()の中を必要に応じて修正してください。
         ・新たにprintlnを追加しないでください。
       */
-      out.println("水とお茶を1個ずつ購入する場合の金額は、");
+      out.println("水とお茶を1個ずつ購入する場合の金額は、" +1);
       out.println("<br>");
       out.println("水とお茶を1個ずつ買った場合、所持金が");
       out.println("<br>");
