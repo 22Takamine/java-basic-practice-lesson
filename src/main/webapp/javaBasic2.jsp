@@ -26,7 +26,7 @@
 
     // 合計点数の平均を求めて、変数へ代入
     
-    
+    //double型の配列の用意。計算結果が小数点も表示するのでdouble型
     double[] avarage = {0,0,0,0};
     avarage[0] = (Double.valueOf(aScore[0]) + bScore[0]) / 2;	//キャスト変換パターン１
     avarage[1] = ((double)(aScore[1]) + bScore[1]) / 2;			//キャスト変換パターン２
