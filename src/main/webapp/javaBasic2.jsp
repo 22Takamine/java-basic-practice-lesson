@@ -26,6 +26,13 @@
 
     // 合計点数の平均を求めて、変数へ代入
     
+    
+    double[] avarage = {0,0,0,0};
+    avarage[0] = (Double.valueOf(aScore[0]) + bScore[0]) / 2;	//キャスト変換パターン１
+    avarage[1] = ((double)(aScore[1]) + bScore[1]) / 2;			//キャスト変換パターン２
+    avarage[2] = ((aScore[2]) + bScore[2]) / 2.0;				//int型をdouble型で割ることでdouble型になる。
+    avarage[3] = avarage[0] + avarage[1] + avarage[2];
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -56,22 +63,22 @@ table th, table td {
     </tr>
     <tr>
       <td>Aさん</td>
-      <td>xxx</td>
-      <td>xxx</td>
-      <td>xxx</td>
+      <td><% out.println(aScore[0]); %></td>
+      <td><% out.println(aScore[1]); %></td>
+      <td><% out.println(aScore[2]); %></td>
     </tr>
     <tr>
       <td>Bさん</td>
-      <td>xxx</td>
-      <td>xxx</td>
-      <td>xxx</td>
+      <td><% out.println(bScore[0]); %></td>
+      <td><% out.println(bScore[1]); %></td>
+      <td><% out.println(bScore[2]); %></td>
     </tr>
   </table>
 
   <h2>平均点</h2>
-  <p>国語：xxx</p>
-  <p>数学：xxx</p>
-  <p>英語：xxx</p>
-  <p>合計：xxx</p>
+  <p>国語：<% out.println(avarage[0]); %></p>
+  <p>数学：<% out.println(avarage[1]); %></p>
+  <p>英語：<% out.println(avarage[2]); %></p>
+  <p>合計：<% out.println(avarage[3]); %></p>
 </body>
 </html>
