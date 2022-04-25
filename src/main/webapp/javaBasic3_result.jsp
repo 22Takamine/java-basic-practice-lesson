@@ -45,16 +45,16 @@
 	}
 	
 	
-	if(age.isEmpty()){
+	if(age.isEmpty()){													//入力がなければ０を出力
 		replyAge = "私よりも" + robotAge + "歳年下ですね。" ;
 		
-	}else if(countAge == 20){
+	}else if(countAge == 20){											//
 		replyAge = "私と同い年なんですね!" ;
 		
-	}else if(countAge > 20){
+	}else if(countAge > 20){											//
 		replyAge = "私よりも" + (countAge - robotAge)+ "歳年上ですね" ;
 		
-	}else if(countAge < 20){
+	}else if(countAge < 20){											//
 		replyAge = "私よりも" + (robotAge - countAge) + "歳年下ですね" ;
 		
 	}

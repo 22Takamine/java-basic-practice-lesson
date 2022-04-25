@@ -10,21 +10,26 @@
     // 表示するメッセージ用の変数
 
     // メッセージ作成
+    
+    //初期メッセージを出力
     String display = ("数値を入力してください");
+
+	//ボタンなどで選択した値を変数に入れている。
 	String num1 = request.getParameter("num1");
 	String num2 = request.getParameter("num2");
 	String operator = request.getParameter("operator");
 	
 	
+	//Integer.parseIntやisEmpty()は変数にNULLが入っているとエラーが起きるので、NULLを取り除いている。
 	if( !(num1 == null || num2 == null) ){
-		if(num1.isEmpty() && num2.isEmpty()){
+		if(num1.isEmpty() && num2.isEmpty()){			//入力された数値が両方空なのか見ている
 			display = ("数値が両方とも未入力です");
 			
-		}else if(num1.isEmpty() || num2.isEmpty()){
+		}else if(num1.isEmpty() || num2.isEmpty()){		//入力された数値が片方でも空なのか見ている
 			display = ("数値を入力してください");
 			
 		}else{
-			int num1Count = Integer.parseInt(num1);
+			int num1Count = Integer.parseInt(num1);		//文字列をint型に変換
 			int num2Count = Integer.parseInt(num2);
 			
 			switch(operator){
