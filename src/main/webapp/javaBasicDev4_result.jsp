@@ -9,10 +9,16 @@
     */
 
     // 入力値を取得
-    String[] product = null; //現在は仮で値をセットしている。実際は入力値を受け取る
+    request.setCharacterEncoding("UTF-8");
+    
+    //String[] product = null; //現在は仮で値をセットしている。実際は入力値を受け取る
+   	//配列型は複数値が送られるので、複数所得するメソッドを使用する
+    String[] product = request.getParameterValues("product");
+   	
 
     // セッションから現在の所持金を取得
-    int money = 150000; //現在は仮で値をセットしている。実際はセッションから取得する
+    int money = 0; //現在は仮で値をセットしている。実際はセッションから取得する
+    money = (int) session.getAttribute("totalMoney");
 
     // 表示用変数定義
     String msg = ""; // 購入メッセージ
@@ -22,7 +28,7 @@
 
     // 商品が選択されているか判断
     if (product == null || product.length == 0) {
-
+		msg = "商品が選ばれていません";
     } else {
         // 購入金額等の計算を行う
         // 商品は複数選択されるので、
@@ -34,15 +40,78 @@
         // (商品名の区切り(後ろ)には<br>をつける)
         // (例:「テレビ」と「冷蔵庫」を選択した場合、sumAmountの値は「50000」
         //      resultの値は「テレビ<br>冷蔵庫<br>」になる
-
+		for(String n : product){
+			switch(n){
+			case "tv":
+				result += "テレビ<br>";
+				sumAmount += 20000;
+				break;
+				
+			case "refrigerator":
+				result += "冷蔵庫<br>";
+				sumAmount += 30000;
+				break;
+				
+			case "microWave":
+				result += "電子レンジ<br>";
+				sumAmount += 10000;
+				break;
+				
+			case "washingMachine":
+				result += "洗濯機<br>";
+				sumAmount += 50000;
+				break;
+			}
+			
+			
+			
+		}
+		/* for(int i = 0; i < product.length; i++){
+			
+			switch(product[i]){
+			case "tv":
+				result += "テレビ<br>";
+				sumAmount += 20000;
+				break;
+				
+			case "refrigerator":
+				result += "冷蔵庫<br>";
+				sumAmount += 30000;
+				break;
+				
+			case "microWave":
+				result += "電子レンジ<br>";
+				sumAmount += 10000;
+				break;
+				
+			case "washingMachine":
+				result += "洗濯機<br>";
+				sumAmount += 50000;
+				break;
+			}
+			
+			
+			
+		} */
+        
+        
         // 現在の所持金と購入金額の合計を比較して、
         // 所持金が足りているか判断
-
         // 足りている場合は、購入後の所持金を計算し、
         // 変数:newMoneyにセット
-
-        // 購入後の所持金をセッションに保存
-
+		if(money >= sumAmount){
+			msg = "以下の商品を購入しました";
+			newMoney = money - sumAmount;
+			// 購入後の所持金をセッションに保存
+	    	session.setAttribute("totalMoney", newMoney);
+		}else{
+			msg = "所持金が足りません";
+			session.setAttribute("totalMoney",150000);
+		}
+			
+        
+		
+        
     }
 %>
 

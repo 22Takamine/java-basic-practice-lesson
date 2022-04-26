@@ -65,28 +65,37 @@
           ・この処理を参考に、勝った回数を更新する処理を実装してください。
         */
 
-        // 1～6の数をランダムで生成
-        int val = (int) (Math.random() * 6 + 1);
+        int val = 0;
 
-        // 合計に加算
-        sum += val;
-
-        // 出た目用の文字列を生成
-        if (result.isEmpty()) {
-            result += val;
-        } else {
-            result += ", " + val;
+        for(int i = 0; i < num; i++){
+        	// 1～6の数をランダムで生成
+        	val = (int) (Math.random() * 6 + 1);
+        	// 合計に加算
+            sum += val;
+            // 出た目用の文字列を生成
+            if (result.isEmpty()) {
+                result += val;
+            } else {
+                result += ", " + val;
+            }
         }
+        
+        
+        
+        
+        
 
         // セッションから実施回数を取得
         totalNum = (int) session.getAttribute("totalNum");
-
+        winNum = (int) session.getAttribute("winNum");
         // 実施回数を1加算
         totalNum += 1;
 
         if (sum % 2 == 0) {
             // 合計が偶数の場合、勝敗用の文字列をセット
             message = "あなたの勝ちです";
+            
+            winNum += 1;
         } else {
             // 合計が奇数の場合、勝敗用の文字列をセット
             message = "あなたの負けです";
@@ -94,6 +103,7 @@
 
         // セッションに実施回数を保存
         session.setAttribute("totalNum", totalNum);
+        session.setAttribute("winNum", winNum);
 
     }
 %>
